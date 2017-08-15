@@ -8,17 +8,62 @@ SPECIAL_VALUE = 9999
 
 ## Calculates the length of the restricted integer array_size
 def length(array)
-  puts "NOT IMPLEMENTED"
+  # puts "NOT IMPLEMENTED"
+  i = 0
+  another_element = true
+  while another_element
+    if array[i]
+      i += 1
+    else
+      another_element = false
+    end
+  end
+  return i
 end
+
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  # puts "NOT IMPLEMENTED"
+  i = 0
+  another_element = true
+  while another_element
+    if array[i]
+      print "#{array[i]}"
+      if array[i + 1]
+        print ", "
+      else
+        print "\n"
+      end
+      i += 1
+    else
+      another_element = false
+    end
+  end
 end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
-  puts "NOT IMPLEMENTED"
+  # puts "NOT IMPLEMENTED"
+  if length == 1
+    return array
+  end
+  i = 0
+  j = (length - 1)
+  more = true
+  while more
+    if array[1] < array[j]
+      temp1 = array[i]
+      temp2 = array[j]
+      array[i] = temp2
+      array[j] = temp1
+      i += 1
+      j -= 1
+    else
+      more = false
+    end
+  end
+  return array
 end
 
 # For an unsorted array, searches for 'value_to_find'.
