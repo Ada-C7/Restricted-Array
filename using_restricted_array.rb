@@ -8,28 +8,61 @@ SPECIAL_VALUE = 9999
 
 ## Calculates the length of the restricted integer array_size
 def length(array)
-  puts "NOT IMPLEMENTED"
+  counter = 0
+  while array[counter] != nil
+    counter += 1
+  end
+  return counter
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  counter = 0
+  while array[counter] != nil
+    print " " << array[counter] << ", "
+    counter += 1
+  end
 end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
-  puts "NOT IMPLEMENTED"
+  midpoint = length div 2
+  midpoint.times do |i|
+    temp = array[i]
+    array[i] = array[length - 1 - i]
+    array[i] = temp
+  end
+  return array
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  length.times do |element|
+    if element == value_to_find
+      return true
+    end
+  end
+    return false
 end
 
 # Sorts the array in ascending order.
 def sort(array, length)
-  puts "NOT IMPLEMENTED"
+  counter = 0
+  while counter < (length - 1)
+    lowest_left_at = counter + 1
+    ((counter + 2)..(length - 1)).each do |i|
+      if array[i] < arr[lowest_left_at]
+        lowest_left_at = i
+      end
+    end
+
+    min = arr[counter]
+    arr[counter]  = arr[lowest_left_at]
+    arr[lowest_left_at] = min
+    counter += 1
+  end
+  return array
 end
 
 # Restricted arrays cannot be resized. So, we follow a convention.
@@ -82,84 +115,84 @@ puts
 # print the current array
 print "Printing values in the array: "
 print_array(another_array)
-# reverse the values in the current array
+#reverse the values in the current array
 reverse(another_array, another_array_length)
-# prints the reversed array
+#prints the reversed array
 print "Reversed array: "
 print_array(another_array)
 puts
-
-# search for value_to_find in the array
-value_to_find = 120
-if search(another_array, another_array_length, value_to_find)
-  puts "#{value_to_find} found in the array!"
-else
-  puts "#{value_to_find} not found in the array!"
-end
-puts
-
-# search for value_to_find in the array - find the last value
-value_to_find = another_array[another_array_length-1]
-if search(another_array, another_array_length, value_to_find)
-  puts "#{value_to_find} found in the array!"
-else
-  puts "#{value_to_find} not found in the array!"
-  puts "BUG! #{value_to_find} should be at index #{another_array_length-1}"
-end
-puts
-
-# print the largest value in the array
-largest = find_largest(another_array, another_array_length)
-puts "The largest value in the array is #{largest}"
-puts
-
-# sort the array
-sort(another_array, another_array_length)
-print "Array sorted in ascending order: "
-print_array(another_array)
-puts
-
-# delete the first entry with the value_to_delete
-value_to_delete = another_array[another_array_length/2]
-delete(another_array, another_array_length, value_to_delete)
-print "#{value_to_delete} deleted from array: "
-print_array(another_array)
-puts
-
-# delete the first entry with the value_to_delete
-value_to_delete = another_array[another_array_length/2]
-delete(another_array, another_array_length, value_to_delete)
-print "#{value_to_delete} deleted from array: "
-print_array(another_array)
-puts
-
-# print the largest value in the array
-largest = find_largest(another_array, another_array_length)
-puts "The largest value in the array is #{largest}"
-puts
-
-# sort the array
-sort(another_array, another_array_length)
-print "Array sorted in ascending order: "
-print_array(another_array)
-puts
-
-# insert 123 in to the array sorted in ascending order
-value_to_insert = 123
-insert_ascending(another_array, another_array_length, value_to_insert)
-print "#{value_to_insert} inserted into the array: "
-print_array(another_array)
-puts
-
-# empty array
-empty(another_array, another_array_length)
-print "Emptied array looks like: "
-print_array(another_array)
-puts
-
-# insert 123 in to the array sorted in ascending order
-value_to_insert = 123
-insert_ascending(another_array, another_array_length, value_to_insert)
-print "#{value_to_insert} inserted into the array: "
-print_array(another_array)
-puts
+#
+# # # search for value_to_find in the array
+# value_to_find = 120
+# if search(another_array, another_array_length, value_to_find)
+#   puts "#{value_to_find} found in the array!"
+# else
+#   puts "#{value_to_find} not found in the array!"
+# end
+# puts
+#
+# # search for value_to_find in the array - find the last value
+# value_to_find = another_array[another_array_length-1]
+# if search(another_array, another_array_length, value_to_find)
+#   puts "#{value_to_find} found in the array!"
+# else
+#   puts "#{value_to_find} not found in the array!"
+#   puts "BUG! #{value_to_find} should be at index #{another_array_length-1}"
+# end
+# puts
+#
+# # print the largest value in the array
+# largest = find_largest(another_array, another_array_length)
+# puts "The largest value in the array is #{largest}"
+# puts
+#
+# # sort the array
+# sort(another_array, another_array_length)
+# print "Array sorted in ascending order: "
+# print_array(another_array)
+# puts
+#
+# # delete the first entry with the value_to_delete
+# value_to_delete = another_array[another_array_length/2]
+# delete(another_array, another_array_length, value_to_delete)
+# print "#{value_to_delete} deleted from array: "
+# print_array(another_array)
+# puts
+#
+# # delete the first entry with the value_to_delete
+# value_to_delete = another_array[another_array_length/2]
+# delete(another_array, another_array_length, value_to_delete)
+# print "#{value_to_delete} deleted from array: "
+# print_array(another_array)
+# puts
+#
+# # print the largest value in the array
+# largest = find_largest(another_array, another_array_length)
+# puts "The largest value in the array is #{largest}"
+# puts
+#
+# # sort the array
+# sort(another_array, another_array_length)
+# print "Array sorted in ascending order: "
+# print_array(another_array)
+# puts
+#
+# # insert 123 in to the array sorted in ascending order
+# value_to_insert = 123
+# insert_ascending(another_array, another_array_length, value_to_insert)
+# print "#{value_to_insert} inserted into the array: "
+# print_array(another_array)
+# puts
+#
+# # empty array
+# empty(another_array, another_array_length)
+# print "Emptied array looks like: "
+# print_array(another_array)
+# puts
+#
+# # insert 123 in to the array sorted in ascending order
+# value_to_insert = 123
+# insert_ascending(another_array, another_array_length, value_to_insert)
+# print "#{value_to_insert} inserted into the array: "
+# print_array(another_array)
+# puts
