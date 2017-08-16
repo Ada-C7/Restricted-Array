@@ -52,7 +52,7 @@ def reverse(array, length) # Ruby
   j = (length - 1)
   more = true
   while more
-    if array[1] < array[j]
+    if array[i] < array[j]
       temp1 = array[i]
       temp2 = array[j]
       array[i] = temp2
@@ -85,6 +85,36 @@ end
 # Sorts the array in ascending order.
 def sort(array, length)
   puts "NOT IMPLEMENTED"
+  # print_array(array)
+  # puts "ORIGINGAL ARRAY ^^^^"
+  # if length == 1
+  #   return array
+  # end
+  # midpoint = length/2
+  # midpoint_value = array[midpoint]
+  #
+  # first_half = RestrictedArray.new(length(array))
+  # last_half =  RestrictedArray.new(length(array))
+  # i = 0
+  # j = 0
+  # k = 0
+  # length(array).times do
+  #   if array[i] <= midpoint_value
+  #     first_half[k] = array[i]
+  #     k += 1
+  #   else
+  #     last_half[j] = array[i]
+  #     j += 1
+  #   end
+  #   i += 1
+  # end
+  # print_array(first_half(0..k))
+  # puts "FIRST HALF ^^^^"
+  # print midpoint_value
+  # puts "Midpoint  ^^^^"
+  # print_array(last_half(0..j))
+  # puts "LAST HALF ^^^^"
+  # return sort(first_half, length(first_half))
 end
 
 # Restricted arrays cannot be resized. So, we follow a convention.
@@ -93,7 +123,22 @@ end
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
 def delete(array, length, value_to_delete)
-  puts "NOT IMPLEMENTED"
+  # puts "NOT IMPLEMENTED"
+  found = false
+  i = 0
+  until found
+    if array[i] == value_to_delete
+      until array[i] == array[-2]
+        array[i] = array[i+1]
+        i += 1
+      end
+      array[-1] = 0
+      found = true
+    else
+      i +=1
+    end
+  end
+  print_array(array)
 end
 
 # Restricted array cannot be resized. So, we workaround by having a convention
