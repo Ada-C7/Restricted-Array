@@ -33,4 +33,17 @@ class RestrictedArray
       @internal_array[key] = value
     end
   end
+
 end
+
+# # Some intial exploration
+# arr1 = RestrictedArray.new(4)
+#
+# (0..3).each do |n|
+#   puts arr1[n]
+# end
+# puts
+# puts arr1[2]
+# arr1[2]=6
+#
+# puts arr1[2]
