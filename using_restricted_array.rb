@@ -8,29 +8,73 @@ SPECIAL_VALUE = 9999
 
 ## Calculates the length of the restricted integer array_size
 def length(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  while array[i] != nil
+    i += 1
+  end
+  return i
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  while array[i] != nil
+    print "#{array[i]} "
+    i += 1
+  end
+  puts
 end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
-  puts "NOT IMPLEMENTED"
+  return if length < 2
+
+  i = 0
+  j = length - 1
+  while i < j
+    # Do the swap
+
+    # one method
+    # temp = array[i]
+    # array[i] = array[j]
+    # array[j] = temp
+
+    # OR since array values are small (<222) and positive
+    array[i] = array[i] + array[j]
+    array[j] = array[i] - array[j]
+    array[i] = array[i] - array[j]
+
+    i += 1
+    j -= 1
+  end
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  while array[i] != nil
+    return true if array[i] == value_to_find
+    i += 1
+  end
+  return false
 end
 
 # Sorts the array in ascending order.
 def sort(array, length)
-  puts "NOT IMPLEMENTED"
+
+  #Similar to selection sort, but may do more swaps
+  (0...length).each do |i|
+    ((i+1)...length).each do |j|
+      if array[j]<array[i]
+        temp=array[i]
+        array[i]=array[j]
+        array[j]=temp
+      end
+    end
+  end
 end
+
 
 # Restricted arrays cannot be resized. So, we follow a convention.
 # Convention: change the value to be deleted with 'SPECIAL_VALUE'
@@ -38,30 +82,68 @@ end
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
 def delete(array, length, value_to_delete)
-  puts "NOT IMPLEMENTED"
+  # Deletes FIRST occurance only of value_to_delete.
+  (0...length).each do |i|
+    if array[i] == value_to_delete
+      (i...length-1).each do |j|
+        array[j] = array[j+1]
+      end
+      array[length-1] = SPECIAL_VALUE
+      return
+    end
+  end
 end
 
 # Restricted array cannot be resized. So, we workaround by having a convention
 # Convention: replace all values with 'SPECIAL_VALUE'
 # Empties the restricted array by making all values = SPECIAL_VALUE
 def empty(array, length)
-  puts "NOT IMPLEMENTED"
+  length.times do |i|
+    array[i] = SPECIAL_VALUE
+  end
 end
 
 # Finds and returns the largest value element in the array which is not 'SPECIAL_VALUE'
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  # special case if array has no values
+  return -1 if length == 0
+  largest = array[0]
+  (0...length).each do |i|
+    if ((array[i] > largest) && (array[i] != SPECIAL_VALUE))
+      largest = array[i]
+    end
+  end
+  return largest
 end
 
 # Insert value to insert at the correct index into the array assuming the array
 # is sorted in ascending manner.
 # Restricted arrays cannot be resized. Insert only if there is space in the array.
-# (Hint: if there are elements with 'SPECIAL_VALUE', there is no room to insert)
+# (Hint: if there are elements with 'SPECIAL_VALUE', there is no room to insert) ---> THIS WAS A TYPO. SHOULD BE: if there are NO elements with 'SPECIAL_VALUE', there is no room to insert
 # All subsequent elements will need to be moved forward by one index.
 def insert_ascending(array, length, value_to_insert)
-  puts "NOT IMPLEMENTED"
+  return if array[length-1] != SPECIAL_VALUE
+
+  desired_index_found = false
+  (0...length).each do |i|
+    if desired_index_found == false && array[i] > value_to_insert
+      desired_index_found = true
+    end
+
+    if desired_index_found == true
+      temp = array[i]
+      array[i] = value_to_insert
+      value_to_insert = temp
+    end
+
+    if value_to_insert == SPECIAL_VALUE
+      break
+    end
+
+  end
 end
+
 
 ## --- END OF METHODS ---
 
@@ -82,6 +164,7 @@ puts
 # print the current array
 print "Printing values in the array: "
 print_array(another_array)
+
 # reverse the values in the current array
 reverse(another_array, another_array_length)
 # prints the reversed array
