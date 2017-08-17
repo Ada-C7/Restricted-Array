@@ -16,19 +16,18 @@ def length(array)
 end
 
 # Prints each integer values in the array
-## for output purposes - i am going to print the values of the array as a string
-## seperated by commas
+
 def print_array(array)
   # puts "NOT IMPLEMENTED"
   i = 0
-  array_as_string = ""
+  # array_as_string = ""
   while array[i]
-    array_as_string += array[i].to_s + " "
-    i += 1
+    # array_as_string += array[i].to_s + " "
+    # i += 1
     # if you want to list each value on its own line, replace the two lines above with:
-    # p array[i]
+    p array[i]
   end
-  p array_as_string
+  # p array_as_string
 end
 
 # Reverses the values in the integer array
