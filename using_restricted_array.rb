@@ -91,7 +91,6 @@ end
 # Convention: replace all values with 'SPECIAL_VALUE'
 # Empties the restricted array by making all values = SPECIAL_VALUE
 def empty(array, length)
-  puts "NOT IMPLEMENTED"
   length.times do |i|
     array[i] = SPECIAL_VALUE
   end
@@ -100,7 +99,15 @@ end
 # Finds and returns the largest value element in the array which is not 'SPECIAL_VALUE'
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  largest = array[0]
+
+  length.times do |i|
+    if array[i] > largest && array[i] != SPECIAL_VALUE
+      largest = array[i]
+    end
+  end
+
+  return largest
 end
 
 # Insert value to insert at the correct index into the array assuming the array
