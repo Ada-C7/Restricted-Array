@@ -17,8 +17,10 @@ end
 
 # Prints each integer values in the array
 def print_array(array)
-  length(array).times do |i|
+  i = 0
+  until i == length(array)
     print array[i].to_s + " "
+    i += 1
   end
   puts
 end
