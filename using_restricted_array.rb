@@ -62,7 +62,7 @@ def sort(array, length)
     min_index = i
     pointer_index = i + 1
 
-    while pointer_index < length - 1
+    while pointer_index < length
       if array[pointer_index] < array[min_index]
         min_index = pointer_index
       end
@@ -116,7 +116,7 @@ end
 # (Hint: if there are no elements with 'SPECIAL_VALUE', there is no room to insert)
 # All subsequent elements will need to be moved forward by one index.
 def insert_ascending(array, length, value_to_insert)
-  puts "NOT IMPLEMENTED"
+  puts "insert ascending NOT IMPLEMENTED"
 end
 
 ## --- END OF METHODS ---
