@@ -99,7 +99,7 @@ end
 def find_largest(array, length)
   # puts "NOT IMPLEMENTED"
   largest = array[0]
-  length.times { |i| largest = array[i] if array[i] > array[0] }
+  length.times { |i| largest = array[i] if array[i] > array[0] && array[i] != SPECIAL_VALUE }
   return largest
 end
 
