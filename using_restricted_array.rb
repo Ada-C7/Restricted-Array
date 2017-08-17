@@ -124,8 +124,29 @@ end
 # Restricted arrays cannot be resized. Insert only if there is space in the array.
 # (Hint: if there are no elements with 'SPECIAL_VALUE', there is no room to insert)
 # All subsequent elements will need to be moved forward by one index.
+
+# TBH I struggled with this one a bit - found solution in github repo..
 def insert_ascending(array, length, value_to_insert)
-  puts "insert ascending NOT IMPLEMENTED"
+  if array[length - 1] != SPECIAL_VALUE
+    return "No room :("
+  end
+
+  insert_index_found = false
+  length.times do |i|
+    if insert_index_found == false && array[i] > value_to_insert
+      insert_index_found = true
+    end
+
+    if insert_index_found == true
+      temp = array[i]
+      array[i] = value_to_insert
+      value_to_insert = temp
+    end
+
+    if value_to_insert == SPECIAL_VALUE
+      break
+    end
+  end
 end
 
 ## --- END OF METHODS ---
