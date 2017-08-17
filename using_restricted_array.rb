@@ -44,10 +44,12 @@ end
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
   return false if length == 0
-  length.times do |i|
+  i = 0
+  until i == length
     if array[i] == value_to_find
       return true
     end
+    i += 1
   end
     return false
 end
