@@ -47,14 +47,10 @@ end
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  i = 0
-
-  while i < length - 1
+  length.times do |i|
     if array[i] == value_to_find
       return true
     end
-
-    i += 1
   end
 
   return false
