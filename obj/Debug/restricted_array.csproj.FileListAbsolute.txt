@@ -1,0 +1,6 @@
+C:\CS\Restricted-Array\bin\Debug\restricted_array.exe.config
+C:\CS\Restricted-Array\bin\Debug\restricted_array.exe
+C:\CS\Restricted-Array\bin\Debug\restricted_array.pdb
+C:\CS\Restricted-Array\obj\Debug\restricted_array.csprojResolveAssemblyReference.cache
+C:\CS\Restricted-Array\obj\Debug\restricted_array.exe
+C:\CS\Restricted-Array\obj\Debug\restricted_array.pdb
