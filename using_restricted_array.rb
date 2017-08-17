@@ -92,6 +92,9 @@ end
 # Empties the restricted array by making all values = SPECIAL_VALUE
 def empty(array, length)
   puts "NOT IMPLEMENTED"
+  length.times do |i|
+    array[i] = SPECIAL_VALUE
+  end
 end
 
 # Finds and returns the largest value element in the array which is not 'SPECIAL_VALUE'
