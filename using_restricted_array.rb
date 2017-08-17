@@ -8,7 +8,13 @@ SPECIAL_VALUE = 9999
 
 ## Calculates the length of the restricted integer array_size
 def length(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+
+  while array[i] != nil
+    i += 1
+  end
+
+  return i 
 end
 
 # Prints each integer values in the array
