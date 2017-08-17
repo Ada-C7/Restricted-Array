@@ -32,7 +32,7 @@ end
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
   i = 0
-  j = length-1
+  j = length - 1
 
   while i < j
     saved_j = array[j]
@@ -47,7 +47,17 @@ end
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  i = 0
+
+  while i < length - 1
+    if array[i] == value_to_find
+      return true
+    end
+
+    i += 1
+  end
+
+  return false
 end
 
 # Sorts the array in ascending order.
