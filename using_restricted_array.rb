@@ -8,28 +8,94 @@ SPECIAL_VALUE = 9999
 
 ## Calculates the length of the restricted integer array_size
 def length(array)
-  puts "NOT IMPLEMENTED"
+  if array[0] == nil
+    return nil
+  else
+    count = 0
+    i = 0
+    while (array[i] != nil)
+        count += 1
+        i += 1
+    end
+  return count
+  end
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  if array[0] == nil
+    print "This is an empty array."
+  else
+    i = 0
+    while (array[i] != nil)
+      print "\n"
+      print array[i]
+      i += 1
+    end
+  end
 end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
-  puts "NOT IMPLEMENTED"
+  if array[0] == nil
+    print "This is an empty array."
+  else
+    print "\n"
+    i = 0
+    j = length - 1
+    while i < j
+      temp  = array[i]
+      array[i] = array[j]
+      array[j] = temp
+      i += 1
+      j -= 1
+    end
+  end
+  return array
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  if array[0] == nil
+    print "This is an empty array."
+  else
+    i = 0
+    while (array[i] != nil)
+      if array[i] == value_to_find
+        return true
+      else
+        i += 1
+      end
+    end
+    return false
+  end
 end
 
 # Sorts the array in ascending order.
 def sort(array, length)
-  puts "NOT IMPLEMENTED"
+  if length == 0
+    print "This is an empty array."
+  else
+    i = 0
+    until i == length - 1
+      j = i + 1
+      min_index = i
+      until j == length
+        if array[min_index] > array[j]
+          min_index = j
+          j += 1
+        else
+          j += 1
+        end
+      end
+      temp = array[i]
+      array[i] = array[min_index]
+      array[min_index] = temp
+      i += 1
+    end
+    return array
+  end
 end
 
 # Restricted arrays cannot be resized. So, we follow a convention.
@@ -38,20 +104,50 @@ end
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
 def delete(array, length, value_to_delete)
-  puts "NOT IMPLEMENTED"
+  if array[0] == nil
+    print "This is an empty array."
+  else
+    i = 0
+    until array[i] > value_to_delete || array[i] == array[length - 1]
+      if array[i] == value_to_delete
+        array[i] = SPECIAL_VALUE
+      end
+      i += 1
+    end
+  end
+  sort(array, length)
+  return array
 end
 
 # Restricted array cannot be resized. So, we workaround by having a convention
 # Convention: replace all values with 'SPECIAL_VALUE'
 # Empties the restricted array by making all values = SPECIAL_VALUE
 def empty(array, length)
-  puts "NOT IMPLEMENTED"
+  if array[0] == nil
+    print "This is an empty array."
+  else
+    i = 0
+    while (array[i] != nil)
+      array[i] = SPECIAL_VALUE
+      i += 1
+    end
+  end
 end
 
 # Finds and returns the largest value element in the array which is not 'SPECIAL_VALUE'
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  if array[0] == nil
+    print "This is an empty array."
+  else
+    max_val = array[0]
+    length.times do |i|
+      if array[i] > max_val && array[i] != SPECIAL_VALUE
+        max_val = array[i]
+      end
+    end
+    return max_val
+  end
 end
 
 # Insert value to insert at the correct index into the array assuming the array
@@ -60,7 +156,21 @@ end
 # (Hint: if there are elements with 'SPECIAL_VALUE', there is no room to insert)
 # All subsequent elements will need to be moved forward by one index.
 def insert_ascending(array, length, value_to_insert)
-  puts "NOT IMPLEMENTED"
+  if array[0] == nil
+    print "This is an empty array."
+  elsif array[length - 1] != SPECIAL_VALUE
+    print "There is no room in this array."
+  else
+    i = 0
+    until array[i] == SPECIAL_VALUE
+      i += 1
+    end
+    if array[i] == SPECIAL_VALUE
+      array[i] = value_to_insert
+    end
+  end
+  sort(array, length)
+  return array
 end
 
 ## --- END OF METHODS ---
@@ -144,6 +254,7 @@ print "Array sorted in ascending order: "
 print_array(another_array)
 puts
 
+## not working
 # insert 123 in to the array sorted in ascending order
 value_to_insert = 123
 insert_ascending(another_array, another_array_length, value_to_insert)
@@ -157,6 +268,7 @@ print "Emptied array looks like: "
 print_array(another_array)
 puts
 
+## not working
 # insert 123 in to the array sorted in ascending order
 value_to_insert = 123
 insert_ascending(another_array, another_array_length, value_to_insert)
