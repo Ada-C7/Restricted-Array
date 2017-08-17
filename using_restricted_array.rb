@@ -14,12 +14,18 @@ def length(array)
     i += 1
   end
 
-  return i 
+  return i
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+
+  while array[i] != nil
+    print "#{array[i]} "
+    i += 1
+  end
+  puts "\n"
 end
 
 # Reverses the values in the integer array
