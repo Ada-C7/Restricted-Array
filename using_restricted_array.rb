@@ -25,12 +25,23 @@ def print_array(array)
     print "#{array[i]} "
     i += 1
   end
+
   puts "\n"
 end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = length-1
+
+  while i < j
+    saved_j = array[j]
+    array[j] = array[i]
+    array[i] = saved_j
+
+    i += 1
+    j -= 1
+  end
 end
 
 # For an unsorted array, searches for 'value_to_find'.
