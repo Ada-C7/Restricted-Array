@@ -33,4 +33,36 @@ class RestrictedArray
       @internal_array[key] = value
     end
   end
+
+  # Creating lenght
+  def length
+    count = 0
+    #iterate through each element in internal_array
+    @internal_array.each do |int|
+      if int
+        count += 1
+      else
+        # if you reach nil, stop counting.
+        break
+      end
+    end
+    return count
+  end
+
+  def print_array
+    #iterate through internal array
+    #print it out, print out space.
+    @internal_array.each do |int|
+      if int
+        print "#{int} "
+      else
+        break
+      end
+    end
+  end
 end
+
+array = RestrictedArray.new()
+
+puts array.length
+array.print_array
