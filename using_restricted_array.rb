@@ -58,7 +58,24 @@ end
 
 # Sorts the array in ascending order.
 def sort(array, length)
-  puts "NOT IMPLEMENTED"
+  length.times do |i|
+    min_index = i
+    pointer_index = i + 1
+
+    while pointer_index < length - 1
+      if array[pointer_index] < array[min_index]
+        min_index = pointer_index
+      end
+
+      pointer_index += 1
+    end
+
+    if min_index != i
+      new_min = array[min_index]
+      array[min_index] = array[i]
+      array[i] = new_min
+    end
+  end
 end
 
 # Restricted arrays cannot be resized. So, we follow a convention.
