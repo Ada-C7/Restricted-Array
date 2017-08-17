@@ -8,28 +8,88 @@ SPECIAL_VALUE = 9999
 
 ## Calculates the length of the restricted integer array_size
 def length(array)
-  puts "NOT IMPLEMENTED"
+    # have a counter that keeps track of where in the array you are
+    i = 0;
+    # loop through the array and check if that number is equal to nil
+    while (array[i] != nil)
+    # if it is not nil, increase i
+        i++
+    end
+
+    # if it is nil, then the length is i
+    return i
+
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+    i = 0;
+    while (array[i] != 0)
+        puts array[i]
+        i++
+    end
 end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
-  puts "NOT IMPLEMENTED"
+    # set i to be the leftmost item in array swap
+    i = 0;
+    # set j to be the right item
+    j = array.length + 1
+
+    # loop through while j is greater than i
+    while j > i
+        # have a temp variable
+        temp = array[i];
+        # make the left most (i) element be the right element
+        array[i] = array[j];
+        # make the right element equal to the left element - now in temp var
+        array[j] = temp;
+
+        # increase i and decrease j
+        i +=1;
+        j -=1
+    end
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  # loop through array based on i which starts at 0
+  i = 0;
+  # have loop stop at array length
+  while i < array.length
+      # at each part in loop look to see if the element matches value_to_find
+      if array[i] == value_to_find
+          # if it does, then return true
+          return true
+      else
+          # if it does not, increase i + 1
+          i++
+      end
+  end
+  # if get through loop and has not returned true, return false
+  return false
 end
 
 # Sorts the array in ascending order.
 def sort(array, length)
-  puts "NOT IMPLEMENTED"
+    i = 0;
+    while i < array.length
+        if array[i] > array[i+1]
+            j = 0;
+            while j < array.length
+                if array[j] > array[i + 1]
+                    temp = array[j];
+                    array[j] = array[i + 1];
+                    array[i + 1] = temp;
+                end
+                j++;
+            end
+            j++;
+        end
+        i++;
+    end
 end
 
 # Restricted arrays cannot be resized. So, we follow a convention.
@@ -38,29 +98,69 @@ end
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
 def delete(array, length, value_to_delete)
-  puts "NOT IMPLEMENTED"
+  i = 0;
+  while i < array.length
+      if array[i] == value_to_delete
+        spaces = (array.length - 1) - i;
+        moved = 0;
+        until moved == spaces
+            array[i] = array[i+1];
+            i++;
+            moved++;
+        end
+        array[array.length - 1] = 'SPECIAL_VALUE';
+      end
+      i++;
+  end
 end
 
 # Restricted array cannot be resized. So, we workaround by having a convention
 # Convention: replace all values with 'SPECIAL_VALUE'
 # Empties the restricted array by making all values = SPECIAL_VALUE
 def empty(array, length)
-  puts "NOT IMPLEMENTED"
+    i = 0;
+    while i < array.length
+        array[i] = 'SPECIAL_VALUE';
+        i++;
+    end
 end
 
 # Finds and returns the largest value element in the array which is not 'SPECIAL_VALUE'
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+    i = 0;
+    big = array[0];
+    while i < array.length
+        if array[i] > big
+            big = array[i];
+            i++;
+        end
+        i++;
+    end
+    return big;
 end
 
 # Insert value to insert at the correct index into the array assuming the array
 # is sorted in ascending manner.
 # Restricted arrays cannot be resized. Insert only if there is space in the array.
-# (Hint: if there are elements with 'SPECIAL_VALUE', there is no room to insert)
+# (Hint: if there are elements with 'SPECIAL_VALUE', there is 1[\4232`  `A  room to insert)
 # All subsequent elements will need to be moved forward by one index.
 def insert_ascending(array, length, value_to_insert)
-  puts "NOT IMPLEMENTED"
+    if array[array.length] == 'SPECIAL_VALUE'
+        i = 0;
+        while i < array.length
+            if array[i] > value_to_insert
+                spaces = (array.length - 1) - i;
+                moved = 0;
+                until moved == spaces
+                    array[i] = array[i+1];
+                    i++;
+                    moved++;
+                end
+            end
+            i++;
+        end
+    end
 end
 
 ## --- END OF METHODS ---
