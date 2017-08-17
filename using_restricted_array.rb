@@ -173,13 +173,22 @@ end
 # (Hint: if there are elements with 'SPECIAL_VALUE', there is no room to insert)
 # All subsequent elements will need to be moved forward by one index.
 def insert_ascending(array, length, value_to_insert)
+  if array[length-1] != SPECIAL_VALUE || length == 0
+    puts "no room to insert"
+    return
+  end
+
   i = 0
-  until i == length
-    if array[i] == SPECIAL_VALUE
-      array[i] = value_to_insert
-    end
+  until array[i] == SPECIAL_VALUE
     i += 1
   end
+
+  if array[i] == SPECIAL_VALUE
+    array[i] = value_to_insert
+  end
+
+  sort(array, length)
+  return array
 end
 
 ## --- END OF METHODS ---
