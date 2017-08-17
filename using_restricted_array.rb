@@ -84,7 +84,16 @@ end
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
 def delete(array, length, value_to_delete)
-  puts "NOT IMPLEMENTED"
+  length.times do |i|
+    if array[i] == value_to_delete
+      while i + 1 < length && array[i] != SPECIAL_VALUE
+        array[i] = array[i + 1]
+        i += 1
+      end
+      array[i] = SPECIAL_VALUE
+      return array
+    end
+  end
 end
 
 # Restricted array cannot be resized. So, we workaround by having a convention
