@@ -27,6 +27,7 @@ end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
+  return array if length == 0 || length == 1
   i = 0
   j = length - 1
   until i >= j
@@ -42,6 +43,7 @@ end
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
+  return false if length == 0
   length.times do |i|
     if array[i] == value_to_find
       return true
@@ -53,6 +55,7 @@ end
 # Sorts the array in ascending order.
 
 def sort(array, length)
+  return array if length == 0 || length == 1
   i = 0
   k = length-1
   until i == length
@@ -123,6 +126,7 @@ end
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
 def delete(array, length, value_to_delete)
+  return array if length == 0
   i = 0
   until i == length
     if array[i] == value_to_delete
@@ -137,6 +141,7 @@ end
 # Convention: replace all values with 'SPECIAL_VALUE'
 # Empties the restricted array by making all values = SPECIAL_VALUE
 def empty(array, length)
+  return array if length == 0
   i = 0
   until i == length
     array[i] = SPECIAL_VALUE
@@ -147,6 +152,8 @@ end
 # Finds and returns the largest value element in the array which is not 'SPECIAL_VALUE'
 # Assumes that the array is not sorted.
 def find_largest(array, length)
+  return nil if length == 0
+  return array[0] if length == 1
   i = 0
   max = 0
   until i == length
