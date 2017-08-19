@@ -30,9 +30,10 @@ end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
-  length = length(array)
+  return array if length < 2
+
   i = 0
-  j = length
+  j = length - 1
 
   while i < j
     temp = array[i]
@@ -49,8 +50,6 @@ end
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  length = length(array)
-
   for i in 0...length
     return true if array[i] == value_to_find
   end
@@ -60,7 +59,7 @@ end
 
 # Sorts the array in ascending order.
 def sort(array, length)
-  length = length(array)
+  return array if length < 2
 
   for i in 0...length
     min_index = i
@@ -82,22 +81,20 @@ end
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
 def delete(array, length, value_to_delete)
-  length = length(array)
+  return array[0] = SPECIAL_VALUE if length < 2
 
   for i in 0...length
     if array[i] == value_to_delete
-      array[i] = SPECIAL_VALUE
-      return array
+        array[i] = SPECIAL_VALUE
     end
   end
+  return sort(array, length)
 end
 
 # Restricted array cannot be resized. So, we workaround by having a convention
 # Convention: replace all values with 'SPECIAL_VALUE'
 # Empties the restricted array by making all values = SPECIAL_VALUE
 def empty(array, length)
-  length = length(array)
-
   for i in 0...length
     array[i] = SPECIAL_VALUE
   end
@@ -108,11 +105,13 @@ end
 # Finds and returns the largest value element in the array which is not 'SPECIAL_VALUE'
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  length = length(array)
-  array = sort(array, length)
+  return array[0] if length < 2
 
-  max_index = length - 1
-  return array[max_index]
+  i = length - 1
+  while array[i] == SPECIAL_VALUE
+    i -= 1
+  end
+  return array[i]
 end
 
 # Insert value to insert at the correct index into the array assuming the array
@@ -121,17 +120,24 @@ end
 # (Hint: if there are no elements with 'SPECIAL_VALUE', there is no room to insert)
 # All subsequent elements will need to be moved forward by one index.
 def insert_ascending(array, length, value_to_insert)
-  length = length(array)
-  array = sort(array, length)
+  return if array[length - 1] != SPECIAL_VALUE
+
+  inserted = false
+  temp = nil
 
   for i in 0...length
-    j = i + 1
-    if array[i] < value_to_insert && array[j] > value_to_insert
-      temp = array[j]
-      array[j] = value_to_insert
-      for k in j...length
-        # insert up...
-      end
+    temp, array[i] = array[i], temp if inserted
+
+    if value_to_insert <= array[i] && !inserted
+      temp = array[i]
+      array[i] = value_to_insert
+      inserted = true
+      i += 1
+    end
+
+    if array[i] == SPECIAL_VALUE
+      array[i] = inserted ? temp : value_to_insert
+      return array 
     end
   end
 end
