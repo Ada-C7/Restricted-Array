@@ -11,5 +11,24 @@ public class CSFunPractice {
 
         myRestrictedArray.reverse();
         myRestrictedArray.print();
+
+        int valueToFind = 120;
+        if (myRestrictedArray.search(valueToFind)) {
+            System.out.print(valueToFind + " found in array! \n");
+        } else {
+            System.out.print(valueToFind + " not found in array! \n");
+        }
+
+        int otherValueToFind = (int) myRestrictedArray.get(0);
+
+        if (myRestrictedArray.search(otherValueToFind)) {
+            System.out.print(otherValueToFind + " found in array! \n");
+        } else {
+            System.out.print(otherValueToFind + " not found in array! BUGGGGGG.\n");
+        }
+
+        myRestrictedArray.sort();
+        System.out.print("Sorted \n");
+        myRestrictedArray.print();
     }
 }

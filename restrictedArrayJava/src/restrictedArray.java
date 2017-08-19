@@ -63,4 +63,37 @@ public class RestrictedArray {
         }
     }
 
+    //search
+    public boolean search(int value) {
+        int i = 0;
+        int length = this.length();
+        while (i < length) {
+            if ((int) this.get(i) == value) {
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
+
+    public void sort() {
+        int i = 0;
+        int length = (int) this.length();
+
+        while (i < length) {
+            int j = i + 1;
+            int minIndex = i;
+            while(j < length) {
+                if ((int) this.get(minIndex) > (int) this.get(j)) {
+                    minIndex = j;
+                }
+                j++;
+            }
+            int numAtI = (int) this.get(i);
+            int numAtMinIndex = (int) this.get(minIndex);
+            this.set(i, numAtMinIndex);
+            this.set(minIndex, numAtI);
+            i++;
+        }
+    }
 }
