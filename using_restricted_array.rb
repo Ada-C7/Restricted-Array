@@ -8,28 +8,63 @@ SPECIAL_VALUE = 9999
 
 ## Calculates the length of the restricted integer array_size
 def length(array)
-  puts "NOT IMPLEMENTED"
+  counter = 0
+  while array[counter] != nil
+    counter += 1
+  end
+  return counter
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  counter = 0
+  print "["
+  while array[counter] != nil
+    print  array[counter]
+    unless array[counter + 1 ] == nil
+      print ", "
+    end
+    counter += 1
+  end
+  print "]"
 end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
-  puts "NOT IMPLEMENTED"
+  midpoint = length/2
+  midpoint.times do |i|
+    temp = array[i]
+    array[i] = array[length - 1 - i]
+    array[length - 1 - i] = temp
+  end
+  return array
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  length.times do |i|
+    if array[i] == value_to_find
+      return true
+    end
+  end
+  return false
 end
 
 # Sorts the array in ascending order.
 def sort(array, length)
-  puts "NOT IMPLEMENTED"
+  length.times do |counter|
+    min_location = counter
+    ((counter + 1)...(length)).each do |i|
+      if array[i] < array[min_location]
+        min_location = i
+      end
+    end
+    min = array[min_location]
+    array[min_location]  = array[counter]
+    array[counter] = min
+  end
+  return array
 end
 
 # Restricted arrays cannot be resized. So, we follow a convention.
@@ -38,20 +73,48 @@ end
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
 def delete(array, length, value_to_delete)
-  puts "NOT IMPLEMENTED"
+  # loop through
+  length.times do |i|
+    break if array[i] > value_to_delete || array[i] == 'SPECIAL_VALUE'
+
+    if array[i] == value_to_delete
+      for j in (i...(length-1))
+        array[j] = array[j+1]
+      end
+      array[-1] = 'SPECIAL VALUE'
+    end
+  end
+  return array
 end
 
 # Restricted array cannot be resized. So, we workaround by having a convention
 # Convention: replace all values with 'SPECIAL_VALUE'
 # Empties the restricted array by making all values = SPECIAL_VALUE
 def empty(array, length)
-  puts "NOT IMPLEMENTED"
+  length.times do |i|
+    array[i] = 'SPECIAL_VALUE'
+  end
 end
 
 # Finds and returns the largest value element in the array which is not 'SPECIAL_VALUE'
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  if array[0]=='SPECIAL_VALUE'
+    return nil
+  end
+
+  max = array[0]
+
+  length.times do |i|
+    if array[i]=='SPECIAL_VALUE'
+      return max
+    end
+
+    if array[i] > max
+      max = array[i]
+    end
+  end
+  return max
 end
 
 # Insert value to insert at the correct index into the array assuming the array
@@ -60,7 +123,22 @@ end
 # (Hint: if there are no elements with 'SPECIAL_VALUE', there is no room to insert)
 # All subsequent elements will need to be moved forward by one index.
 def insert_ascending(array, length, value_to_insert)
-  puts "NOT IMPLEMENTED"
+  if array[0] == 'SPECIAL_VALUE'
+    array[0] = value_to_insert
+    return array
+  end
+  counter = 0
+  while counter < length
+    break if array[counter] > value_to_insert
+    counter +=1
+  end
+
+  for i in ((length).downto(counter))
+    array[i + 1] == array[i]
+  end
+
+  array[counter] = value_to_insert
+  return array
 end
 
 ## --- END OF METHODS ---
@@ -82,14 +160,14 @@ puts
 # print the current array
 print "Printing values in the array: "
 print_array(another_array)
-# reverse the values in the current array
+#reverse the values in the current array
 reverse(another_array, another_array_length)
-# prints the reversed array
+#prints the reversed array
 print "Reversed array: "
 print_array(another_array)
 puts
-
-# search for value_to_find in the array
+#
+# # search for value_to_find in the array
 value_to_find = 120
 if search(another_array, another_array_length, value_to_find)
   puts "#{value_to_find} found in the array!"
@@ -97,8 +175,8 @@ else
   puts "#{value_to_find} not found in the array!"
 end
 puts
-
-# search for value_to_find in the array - find the last value
+#
+# # search for value_to_find in the array - find the last value
 value_to_find = another_array[another_array_length-1]
 if search(another_array, another_array_length, value_to_find)
   puts "#{value_to_find} found in the array!"
@@ -107,7 +185,7 @@ else
   puts "BUG! #{value_to_find} should be at index #{another_array_length-1}"
 end
 puts
-
+#
 # print the largest value in the array
 largest = find_largest(another_array, another_array_length)
 puts "The largest value in the array is #{largest}"
@@ -120,11 +198,7 @@ print_array(another_array)
 puts
 
 # delete the first entry with the value_to_delete
-value_to_delete = another_array[another_array_length/2]
-delete(another_array, another_array_length, value_to_delete)
-print "#{value_to_delete} deleted from array: "
-print_array(another_array)
-puts
+
 
 # delete the first entry with the value_to_delete
 value_to_delete = another_array[another_array_length/2]
@@ -132,7 +206,7 @@ delete(another_array, another_array_length, value_to_delete)
 print "#{value_to_delete} deleted from array: "
 print_array(another_array)
 puts
-
+#
 # print the largest value in the array
 largest = find_largest(another_array, another_array_length)
 puts "The largest value in the array is #{largest}"
