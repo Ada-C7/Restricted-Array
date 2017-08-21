@@ -33,4 +33,5 @@ class RestrictedArray
       @internal_array[key] = value
     end
   end
+
 end
