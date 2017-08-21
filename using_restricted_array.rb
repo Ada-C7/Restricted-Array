@@ -8,28 +8,61 @@ SPECIAL_VALUE = 9999
 
 ## Calculates the length of the restricted integer array_size
 def length(array)
-  puts "NOT IMPLEMENTED"
+  length = 0
+  while array[length] != nil
+    length += 1
+  end
+  return length
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  (0..array.array_size).each do |i|
+    print array[i]
+    print " "
+  end
 end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
-  puts "NOT IMPLEMENTED"
+  start_ind = 0
+  end_ind = length-1
+  while start_ind < end_ind
+    temp = array[start_ind]
+    array[start_ind] = array[end_ind]
+    array[end_ind] = temp
+    start_ind += 1
+    end_ind -= 1
+  end
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  (0...length).each do |i|
+    if array[i] == value_to_find
+      return true
+    end
+  end
+  return false
 end
 
 # Sorts the array in ascending order.
 def sort(array, length)
-  puts "NOT IMPLEMENTED"
+  l = length - 1
+  (0...l).each do |i|
+    index = i
+    j = i + 1
+    (j..l).each do |j|
+      if array[j] < array[index]
+        index = j
+      end
+    end
+    smaller_num = array[index]
+    array[index] = array[i]
+    array[i] = smaller_num
+  end
+  return array
 end
 
 # Restricted arrays cannot be resized. So, we follow a convention.
@@ -38,20 +71,42 @@ end
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
 def delete(array, length, value_to_delete)
-  puts "NOT IMPLEMENTED"
+  found = false
+  (0...length).each do |i|
+    if array[i] == value_to_delete
+      found = true
+      while  array[i] != SPECIAL_VALUE && i + 1 < length 
+        array[i] = array[i+1]
+        i += 1
+      end
+      array[i] = SPECIAL_VALUE
+    end
+  end  
+  return -1 if !found
 end
 
 # Restricted array cannot be resized. So, we workaround by having a convention
 # Convention: replace all values with 'SPECIAL_VALUE'
 # Empties the restricted array by making all values = SPECIAL_VALUE
 def empty(array, length)
-  puts "NOT IMPLEMENTED"
+  (0...length).each do |i|
+    array[i] = SPECIAL_VALUE
+  end
 end
 
 # Finds and returns the largest value element in the array which is not 'SPECIAL_VALUE'
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  return -1 if length == 0
+  i = 0
+  largest_element = array[i]
+  while i + 1 < length && array[i+1] != SPECIAL_VALUE
+    i += 1
+    if array[i] > largest_element
+      largest_element  = array[i]
+    end
+  end
+  return largest_element    
 end
 
 # Insert value to insert at the correct index into the array assuming the array
@@ -60,18 +115,32 @@ end
 # (Hint: if there are no elements with 'SPECIAL_VALUE', there is no room to insert)
 # All subsequent elements will need to be moved forward by one index.
 def insert_ascending(array, length, value_to_insert)
-  puts "NOT IMPLEMENTED"
+  return -1 if array[length-1] != SPECIAL_VALUE
+  found = false
+  (0...length).each do |i|
+    if array[i] > value_to_insert
+      found = true
+    end
+    if found == true
+      temp = array[i]
+      array[i] = value_to_insert
+      value_to_insert = temp
+    end
+    if value_to_insert == SPECIAL_VALUE
+      break
+    end
+  end
 end
 
 ## --- END OF METHODS ---
 
 # A restricted array could be constructed of a given size like so
-size = 5
-my_integer_array = RestrictedArray.new(size)
-my_integer_array_length = length(my_integer_array)
-puts "The length of my integer array is #{my_integer_array_length}, which should be the same as #{size}."
-puts "BUG!" if my_integer_array_length != size
-puts
+# size = 5
+# my_integer_array = RestrictedArray.new(size)
+# my_integer_array_length = length(my_integer_array)
+# puts "The length of my integer array is #{my_integer_array_length}, which should be the same as #{size}."
+# puts "BUG!" if my_integer_array_length != size
+# puts
 
 # A restricted array could be constructed of a random size (1 to 20) like so
 another_array = RestrictedArray.new()
