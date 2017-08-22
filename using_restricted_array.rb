@@ -8,28 +8,77 @@ SPECIAL_VALUE = 9999
 
 ## Calculates the length of the restricted integer array_size
 def length(array)
-  puts "NOT IMPLEMENTED"
+  # THIS IS WORKING
+  i = 0
+  while array[i] != nil
+    i += 1
+  end
+  return i
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  # THIS IS WORKING
+  i = 0
+  while array[i] != nil do
+    print array[i]
+    print " "
+    i += 1
+  end
+  puts
+
 end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
-  puts "NOT IMPLEMENTED"
+  # THIS IS WORKING
+  temp = nil
+  i = 0
+  times = length/2
+
+  while i < times
+    temp = array[i]
+    pair = (length - 1) - i
+    array[i] = array[pair]
+    array[pair] = temp
+    i += 1
+  end
+  return array
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  # THIS IS WORKING
+  return false if length == 0
+  i = 0
+  while array[i] != nil
+    if array[i] == value_to_find
+      return true
+    end
+    i += 1
+  end
+  return false
 end
 
 # Sorts the array in ascending order.
 def sort(array, length)
-  puts "NOT IMPLEMENTED"
+  return array if length < 2
+  i = 1
+
+  temp = nil
+  j = 0
+  while i < length && j > -1 do
+    if array[i] < array[j]
+      temp = array[i]
+      array[i] = array[j]
+      array[j] = temp
+      j -= 1
+    else
+      i += 1
+    end
+  end
+  return array
 end
 
 # Restricted arrays cannot be resized. So, we follow a convention.
@@ -45,13 +94,28 @@ end
 # Convention: replace all values with 'SPECIAL_VALUE'
 # Empties the restricted array by making all values = SPECIAL_VALUE
 def empty(array, length)
-  puts "NOT IMPLEMENTED"
+  # THIS IS WORKING
+  i = 0
+  while array[i] != nil do
+    array[i] = SPECIAL_VALUE
+    i += 1
+  end
+
 end
 
 # Finds and returns the largest value element in the array which is not 'SPECIAL_VALUE'
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  # THIS IS WORKING
+  i = 1
+  max = array[0]
+  while array[i] != nil do
+    if array[i] > max && array[i] != SPECIAL_VALUE
+      max = array[i]
+    end
+    i += 1
+  end
+  return max
 end
 
 # Insert value to insert at the correct index into the array assuming the array
