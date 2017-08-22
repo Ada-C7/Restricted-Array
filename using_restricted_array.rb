@@ -68,15 +68,18 @@ def sort(array, length)
 
   temp = nil
   j = 0
-  while i < length && j > -1 do
-    if array[i] < array[j]
-      temp = array[i]
-      array[i] = array[j]
-      array[j] = temp
-      j -= 1
-    else
-      i += 1
+  while i < length do
+    while j > -1 do
+      if array[i] < array[j]
+        temp = array[i]
+        array[i] = array[j]
+        array[j] = temp
+        j -= 1
+      end
     end
+    i += 1
+    j = i - 1
+
   end
   return array
 end
@@ -87,7 +90,14 @@ end
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
 def delete(array, length, value_to_delete)
-  puts "NOT IMPLEMENTED"
+  # THIS IS WORKING
+  i = 0
+  while i < length do
+    if array[i] == value_to_delete
+      array[i] = SPECIAL_VALUE
+    end
+    i += 1
+  end
 end
 
 # Restricted array cannot be resized. So, we workaround by having a convention
