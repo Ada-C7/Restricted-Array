@@ -108,6 +108,7 @@ end
 # Restricted arrays cannot be resized. Insert only if there is space in the array.
 # (Hint: if there are NO elements with 'SPECIAL_VALUE', there is no room to insert)
 # All subsequent elements will need to be moved forward by one index.
+## GOOD IDEA TO USE BINARY SORT WHEN YOU KNOW ARRAY IS SORTED - WILL IMPROVE TIME COMPLEX
 def insert_ascending(array, length, value_to_insert)
   if search(array, length, SPECIAL_VALUE)
 
