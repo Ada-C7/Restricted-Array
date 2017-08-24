@@ -75,6 +75,7 @@ end
 # Deletes 'value_to_delete' if found in the array. To keep the array size
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
+# SPECIAL_VALUE should be at end - move all entrys forwards after you remove
 def delete(array, length, value_to_delete)
   # puts "NOT IMPLEMENTED"
   length.times do |i|
@@ -89,6 +90,7 @@ end
 # Restricted array cannot be resized. So, we workaround by having a convention
 # Convention: replace all values with 'SPECIAL_VALUE'
 # Empties the restricted array by making all values = SPECIAL_VALUE
+# if SPEICAL_VALUE is always suppose to be inserted at the end, 
 def empty(array, length)
   # puts "NOT IMPLEMENTED"
   length.times { |i| array[i] = SPECIAL_VALUE }
