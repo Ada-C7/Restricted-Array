@@ -63,25 +63,34 @@ end
 
 # Sorts the array in ascending order.
 def sort(array, length)
-  return array if length < 2
-  i = 1
+  puts "NOT IMPLEMENTED"
 
-  temp = nil
-  j = 0
-  while i < length do
-    while j > -1 do
-      if array[i] < array[j]
-        temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
-        j -= 1
-      end
-    end
-    i += 1
-    j = i - 1
+  # return array if length < 2
+  #
+  # i = 0
+  # j = 1
+  # min_val = array[i]
+  # look for a value in the rest of the array after i that is less than min_val
 
-  end
-  return array
+
+  # i = 1
+  #
+  # temp = nil
+  # j = 0
+  # while i < length do
+  #   while j > -1 do
+  #     if array[i] < array[j]
+  #       temp = array[i]
+  #       array[i] = array[j]
+  #       array[j] = temp
+  #       j -= 1
+  #     end
+  #   end
+  #   i += 1
+  #   j = i - 1
+
+  # end
+  # return array
 end
 
 # Restricted arrays cannot be resized. So, we follow a convention.
