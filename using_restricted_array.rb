@@ -6,30 +6,83 @@ require_relative 'restricted_array.rb'
 # An unused space in the restricted array has the 'SPECIAL_VALUE'
 SPECIAL_VALUE = 9999
 
+
 ## Calculates the length of the restricted integer array_size
 def length(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+
+  while array.[](i) != nil
+    i += 1
+  end
+
+  return i
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+
+  while array.[](i) != nil
+    puts Integer(array.[](i))
+    i += 1
+  end
 end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
-  puts "NOT IMPLEMENTED"
+  i = 0
+  k = length - 1
+  stop_value = length / 2
+  #Solution works for all lengths due to Ruby's rounding behavior.
+
+  while i != stop_value
+    value_1 = array.[](i)
+    value_2 = array.[](k)
+
+    array.[]=(i, value_2)
+    array.[]=(k, value_1)
+
+    i += 1
+    k -= 1
+  end
+
+  return array
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  i = 0
+
+  while i <= length
+    if array.[](i) == value_to_find
+      return true
+    end
+    i += 1
+  end
+
+  return false
 end
 
 # Sorts the array in ascending order.
 def sort(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+
+  while i < length
+    if array.[](i + 1) != nil
+      if array.[](i) > array.[](i + 1)
+        highest_current_value = array.[](i)
+
+        array.[]=(i, array.[](i + 1))
+        array.[]=(i + 1, highest_current_value)
+
+        i = -1
+      end
+    end
+    i += 1
+  end
+
+  return array
 end
 
 # Restricted arrays cannot be resized. So, we follow a convention.
@@ -38,20 +91,50 @@ end
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
 def delete(array, length, value_to_delete)
-  puts "NOT IMPLEMENTED"
+  i = 0
+
+  if search(array, length, value_to_delete) == false
+    return array
+  else
+    while i <= length
+      if array.[](i) == value_to_delete
+        array.[]=(i, SPECIAL_VALUE)
+      end
+      i += 1
+    end
+  end
+
+  return array
 end
 
 # Restricted array cannot be resized. So, we workaround by having a convention
 # Convention: replace all values with 'SPECIAL_VALUE'
 # Empties the restricted array by making all values = SPECIAL_VALUE
 def empty(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+
+  while i < length
+    array.[]=(i, SPECIAL_VALUE)
+    i += 1
+  end
+
+  return array
 end
 
 # Finds and returns the largest value element in the array which is not 'SPECIAL_VALUE'
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  highest_current_value = array.[](0)
+
+  while i < length
+    if ((array.[](i) > highest_current_value) && (array.[](i) != SPECIAL_VALUE))
+      highest_current_value = array.[](i)
+    end
+    i += 1
+  end
+
+  return highest_current_value
 end
 
 # Insert value to insert at the correct index into the array assuming the array
@@ -60,7 +143,17 @@ end
 # (Hint: if there are no elements with 'SPECIAL_VALUE', there is no room to insert)
 # All subsequent elements will need to be moved forward by one index.
 def insert_ascending(array, length, value_to_insert)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  k = length - 1
+
+  while i <= length
+    if array.[](i) == SPECIAL_VALUE
+      array.[]=(i, value_to_insert)
+
+      array = sort(array, length)
+    end
+    i += 1
+  end
 end
 
 ## --- END OF METHODS ---
