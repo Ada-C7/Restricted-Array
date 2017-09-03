@@ -131,6 +131,10 @@ end
 # All subsequent elements will need to be moved forward by one index.
 def insert_ascending(array, length, value_to_insert)
 
+  if array[length - 1] != SPECIAL_VALUE
+    return
+  end 
+
   (length - 1).times do |i|
     if array[i + 1] > value_to_insert
       temp = array[i + 1]
