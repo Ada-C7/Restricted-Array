@@ -8,30 +8,75 @@ SPECIAL_VALUE = 9999
 
 ## Calculates the length of the restricted integer array_size
 def length(array)
-  puts "NOT IMPLEMENTED"
+  count = 0
+  continue = true
+  while continue
+    array[count] != nil ? count += 1 : continue = false
+  end
+  return count
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  continue = true
+  while continue
+    if array[index] != nil
+      puts array[index]
+      index += 1
+    else
+      continue = false
+    end
+  end
 end
 
 # Reverses the values in the integer array
 def reverse(array, length) # Ruby
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = length
+  length/2.times do
+    temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+    i += 1
+    j -= 1
+  end
+  return array
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  has_found = false
+  length.times do |i|
+    if array[i] == value_to_find
+      has_found = true
+    end
+  end
+  return has_found
 end
 
 # Sorts the array in ascending order.
-def sort(array, length)
-  puts "NOT IMPLEMENTED"
+def sort(array, size)
+  result = []
+  return result if size <= 1
+  mid = array[size/2]
+  left = array[0, mid]
+  right = array[mid, size]
+  result += merge(sort(left),sort(right))
 end
 
+def merge(left, right)
+  sorted = []
+  until left.empty? || right.empty?
+    if left[0] <= right[0]
+      sorted << left.shift
+    else
+      sorted << right.shift
+    end
+  end
+  sorted.concat(left).concat(right)
+end
 # Restricted arrays cannot be resized. So, we follow a convention.
 # Convention: change the value to be deleted with 'SPECIAL_VALUE'
 # Deletes 'value_to_delete' if found in the array. To keep the array size
