@@ -57,10 +57,26 @@ def search(array, length, value_to_find)
 end
 
 # Sorts the array in ascending order.
-def sort(array, length)
-  puts "NOT IMPLEMENTED"
+def sort(array, size)
+  result = []
+  return result if size <= 1
+  mid = array[size/2]
+  left = array[0, mid]
+  right = array[mid, size]
+  result += merge(sort(left),sort(right))
 end
 
+def merge(left, right)
+  sorted = []
+  until left.empty? || right.empty?
+    if left[0] <= right[0]
+      sorted << left.shift
+    else
+      sorted << right.shift
+    end
+  end
+  sorted.concat(left).concat(right)
+end
 # Restricted arrays cannot be resized. So, we follow a convention.
 # Convention: change the value to be deleted with 'SPECIAL_VALUE'
 # Deletes 'value_to_delete' if found in the array. To keep the array size
