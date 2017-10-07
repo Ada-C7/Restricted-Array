@@ -19,7 +19,9 @@ end
 # Prints each integer values in the array
 def print_array(array)
   (length(array)).times do |i|
-    print "#{array[i]} "
+    if array[i] != SPECIAL_VALUE
+      print "#{array[i]} "
+    end
   end
   puts "---"
   # puts "NOT IMPLEMENTED"
@@ -69,17 +71,9 @@ def sort(array, length)
   if length == 0
     return array
   end
-  # -3 0 7 -4 10
 
   i = 0
   j = 1
-
-  # 72 128 128 51 3
-
-  # 3 51 128 128 72
-            # 4
-
-  # min = 3
 
   while i < (length - 1) do
     min = array[i]
@@ -87,7 +81,7 @@ def sort(array, length)
       if array[j] < min
         min = array[j]
         min_index = j
-        puts "min index: #{min_index}"
+        # puts "min index: #{min_index}"
       end
       j += 1
     end
@@ -141,7 +135,11 @@ end
 # Assumes that the array is not sorted.
 def find_largest(array, length)
   sort(array, length)
-  return array[length-1]
+  i = 1
+  until array[length - i] != SPECIAL_VALUE
+    i += 1
+  end
+  return array[length - i]
   # puts "NOT IMPLEMENTED"
 end
 
@@ -153,18 +151,26 @@ end
 def insert_ascending(array, length, value_to_insert)
   sort(array, length)
   i = 0
-  j = length
+  # j = length
   while i < length do
-    if value_to_insert < array[i]
-      insert_index = i
-      until j == i
-        array[j] = array[j-1]
-        j -= 1
+    if array[i] == SPECIAL_VALUE && array[i + 1] != nil
+      if array[i + 1] > value_to_insert
+        array[i] = value_to_insert
+        return
+      else
+        array[i] = array[i + 1]
+        array[i + 1] = SPECIAL_VALUE
+        i += 1
       end
-      array[i] = v
+    elsif array[i] == SPECIAL_VALUE && array[i + 1] == nil
+      until array[i - 1] < value_to_insert
+        array[i] = array[i - 1]
+        i -= 1
+      end
+      array[i] = value_to_insert
     end
+    i += 1
   end
-  # puts "NOT IMPLEMENTED"
 end
 
 ## --- END OF METHODS ---
@@ -231,12 +237,12 @@ print "#{value_to_delete} deleted from array: "
 print_array(another_array)
 puts
 
-# # delete the first entry with the value_to_delete
-# value_to_delete = another_array[another_array_length/2]
-# delete(another_array, another_array_length, value_to_delete)
-# print "#{value_to_delete} deleted from array: "
-# print_array(another_array)
-# puts
+# delete the first entry with the value_to_delete
+value_to_delete = another_array[another_array_length/2]
+delete(another_array, another_array_length, value_to_delete)
+print "#{value_to_delete} deleted from array: "
+print_array(another_array)
+puts
 
 # print the largest value in the array
 largest = find_largest(another_array, another_array_length)
