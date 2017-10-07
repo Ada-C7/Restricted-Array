@@ -19,11 +19,13 @@ end
 # Prints each integer values in the array
 def print_array(array)
   (length(array)).times do |i|
-    if array[i] != SPECIAL_VALUE
+    if array[i] == SPECIAL_VALUE
+      print "--- "
+    elsif array[i] != SPECIAL_VALUE
       print "#{array[i]} "
     end
   end
-  puts "---"
+  puts "end"
   # puts "NOT IMPLEMENTED"
 end
 
@@ -107,10 +109,18 @@ end
 # constant, adds an element with 'SPECIAL_VALUE' in the end. Assumes the array
 # to be sorted in ascending order.
 def delete(array, length, value_to_delete)
+  if value_to_delete == SPECIAL_VALUE
+    puts "no values in the array to delete"
+    return
+  end
   i = 0
   while i < length do
     if array[i] == value_to_delete
-      array[i] = SPECIAL_VALUE
+      until i == (length - 1)
+        array[i] = array[i+1]
+        i += 1
+      end
+      array[length - 1] = SPECIAL_VALUE
       return array
     end
     i += 1
@@ -135,6 +145,11 @@ end
 # Assumes that the array is not sorted.
 def find_largest(array, length)
   sort(array, length)
+  if array[0] == SPECIAL_VALUE
+    puts "no values in array"
+    return
+  end
+
   i = 1
   until array[length - i] != SPECIAL_VALUE
     i += 1
@@ -163,10 +178,6 @@ def insert_ascending(array, length, value_to_insert)
         i += 1
       end
     elsif array[i] == SPECIAL_VALUE && array[i + 1] == nil
-      until array[i - 1] < value_to_insert
-        array[i] = array[i - 1]
-        i -= 1
-      end
       array[i] = value_to_insert
     end
     i += 1
@@ -239,6 +250,7 @@ puts
 
 # delete the first entry with the value_to_delete
 value_to_delete = another_array[another_array_length/2]
+puts "Value to delete: #{value_to_delete}"
 delete(another_array, another_array_length, value_to_delete)
 print "#{value_to_delete} deleted from array: "
 print_array(another_array)
